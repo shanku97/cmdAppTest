@@ -1,5 +1,6 @@
 package com.example.cmdAppTest.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,13 +22,13 @@ public class TestTaskService {
 	 private int taskId = 1;
 	 private final SimpleDateFormat deadlineFormatter = new SimpleDateFormat("yyyy-MM-dd");
 	 
-	 public TestTaskEntity addTask(String title, String description, String deadline) {
+	 public TestTaskEntity addTask(String title, String description, String deadline) throws ParseException {
 		 
 		 TestTaskEntity test=new TestTaskEntity();
 		 test.setId(taskId);
 		 test.setTitle(title);
 		 test.setDescription(description);
-		 test.setDeadline(new Date(deadline));
+		 test.setDeadline(deadlineFormatter.parse(deadline));
 		 test.setCompleted(false);
 		 tasks.add(test);
 		 taskId++;
